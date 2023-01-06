@@ -15,8 +15,8 @@ const createUser = async (req, res) => {
     
     //                              <<===mandatory/format===>>                                     //
     //--title--//
-    // if (!title) {return res.status(400).json("Title is required" )}
-    // if (!["Mr", "Mrs", "Miss"].includes(title)) {return res.status(400).json("Title should contain Mr.,Mrs.,Miss");}
+    if (!title) {return res.status(400).json("Title is required" )}
+    if (!["Mr", "Mrs", "Miss"].includes(title)) {return res.status(400).json("Title should contain Mr.,Mrs.,Miss");}
     
     //--name--//
     if(!valid.isValid(name)){return res.status(400).json("name is required" )}
@@ -32,8 +32,7 @@ const createUser = async (req, res) => {
    if(!valid.isValid(email)){return res.status(400).json("email is required" )}
    if(!valid.isValidEmail(email)){return res.status(400).json("emailId is required and must be unique and must be in valid format =>example@gmail.com...!" )}
    const dublicateEmail = await userModel.findOne({ email: email });
-    if (dublicateEmail) { return res.status(400).json({  status: false,
-      msg: " Email Already Present", });}
+    if (dublicateEmail) { return res.status(400).json(" Email Already Present");}
     
       //--password--//
     if(!valid.isValid(password)){return res.status(400).json("password is required" )}

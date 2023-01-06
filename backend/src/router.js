@@ -9,7 +9,7 @@ const{authentication,authorisation,authorisationbyBId}=require("./middleware/mid
 router.post("/register",userController.createUser)
 router.post("/login",userController.loginUser)
 // =====================================BOOK API============================================//
-router.post("/books",/*authentication,authorisation,*/bookController.createbook)
+router.post("/books",authentication,authorisation,bookController.createbook)
 router.get("/books",authentication,bookController.getBook)
 
 router.get("/books/:bookId",authentication,bookController.getById)
