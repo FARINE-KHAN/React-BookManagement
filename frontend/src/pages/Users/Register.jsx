@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import img from "../../images/bk.jpg"
 //rafce
 export const Register = () => {
   const [inputs, setInputs] = useState({
@@ -36,12 +36,16 @@ export const Register = () => {
     }));
   };
   return (
-    <div>
-      <div>
-        <form>
+    <div className="main-home">
+      <div className="img" >
+
+      <img src={img} alt="" />
+      </div>  
+      <div className="form">
+        <form >
           <h1>Registeration</h1>
-          <div>   
-          <select  name = "title" onChange={handleChange}>
+          <div className="select">   
+          <select  name = "title" onChange={handleChange} >
             <option value = "Title" defaultValue></option>
             <option value = "Mr" >Mr</option>
             <option value = "Mrs">Mrs</option>
@@ -79,7 +83,7 @@ export const Register = () => {
 </form>
         <div>
           <Link to="/login">
-            <button onClick={handleSubmit}>Register</button>
+            <button onClick={handleSubmit} className ="home-btn">Register</button>
           </Link>
           {error && <p>{error}</p>}
         </div>

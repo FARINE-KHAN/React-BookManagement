@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import  {Register} from "./pages/Users/Register";
  import {Login} from "./pages/Users/Login"
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
 
 function App() {
 return (
-<div>
+<div className="app">
  < RouterProvider router={router} />
 </div>
 );

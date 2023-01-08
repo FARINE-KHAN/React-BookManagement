@@ -1,17 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import img from "../../images/bk.jpg"
 export default function Home() {
   return (
-    <div>
-        <div>
-            <h1>
+    <div className='main-home'>
+      <div className='img'> 
+      <img src={img} alt="" />
+      </div> 
+      <div className='textHome'>
+            <h1 className='home'>
                 Welcome To Book Library
             </h1>
-        </div>
-        <div>
             <Link to="/register"> 
-            <button>
+            <button className='home-btn'>
                 Register
             </button>
             </Link>

@@ -92,5 +92,16 @@ const loginUser = async function (req, res) {
     res.status(500).json({ status: false, err: error.message });
   }
 };
+const logout= async(req,res)=>{
+  try {
+    res.clearCookie("cookies_token",{
+      sameSite:"none",
+      secure:true
+    })
+    .status(200).json("logged out")
+  } catch (error) {
+    res.status(500).json({ status: false, err: error.message });
+  }
+}
 
-module.exports = { createUser, loginUser };
+module.exports = { createUser, loginUser,logout };
