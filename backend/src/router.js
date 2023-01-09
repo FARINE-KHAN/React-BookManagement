@@ -11,10 +11,10 @@ router.post("/login",userController.loginUser)
 router.post("/logout",userController.logout)
 
 // =====================================BOOK API============================================//
-router.post("/books",authentication,authorisation,bookController.createbook)
-router.get("/books",authentication,bookController.getBook)
+router.post("/books",bookController.createbook)
+router.get("/books",bookController.getBook)
 
-router.get("/books/:bookId",authentication,bookController.getById)
+router.get("/books/:bookId",bookController.getById)
 router.put("/books/:bookId",authentication,authorisationbyBId,bookController.updatebook)
 router.delete("/books/:bookId",authentication,authorisationbyBId,bookController.deleteBooks)
 // ==================================== REVIEW API ===========================================//

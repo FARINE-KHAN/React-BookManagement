@@ -66,6 +66,7 @@ const loginUser = async function (req, res) {
   try {
     let data = req.body;
     let { email, password } = data;
+    
 
     if (!valid.isValidRequestBody(data)) {
       return res.status(400).json( "plz provide data" );
@@ -87,7 +88,7 @@ const loginUser = async function (req, res) {
     );
     res.cookie("cookies_token",token,{
         httpOnly:true
-    }).status(201).json( {data,token} );
+    }).status(201).json( {data, id:user._id,token} );
   } catch (error) {
     res.status(500).json({ status: false, err: error.message });
   }

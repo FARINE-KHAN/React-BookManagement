@@ -86,6 +86,12 @@ export const Register = () => {
             <button onClick={handleSubmit} className ="home-btn">Register</button>
           </Link>
           {error && <p>{error}</p>}
+          <span >
+            Already registered ?
+            <Link to="/login" style={{"textDecoration":"none"}}>
+            Login
+            </Link>
+          </span>
         </div>
         </form>
       </div>

@@ -31,7 +31,7 @@ const createbook = async function (req, res) {
     //---title---//
     if(!valid.isValid(title)){ return res.status(400).json( " title is required");}
     const dublicatetitle = await bookModel.findOne({ title: title });
-    if(dublicatetitle){ return res.status(409).json({status: false,msg: " title should be unique", });}
+    if(dublicatetitle){ return res.status(409).json(" title should be unique");}
 
     //---excerpt---//
     if (!valid.isValid(excerpt)) {return res.status(400).json( " excerpt is required" ); }
@@ -52,12 +52,12 @@ const createbook = async function (req, res) {
     if (!valid.isValid(subcategory)) {return res.status(400).json( " subcategory is required");}
     //---releasedAt---//
     if(!valid.isValid(releasedAt)){return res.status(400).json("provide releasedAt date")}
-    if (!valid.isValidDate(releasedAt)) {return res.status(400).json(" releasedAt date should be in format=> yyyy-mm-dd");}
+    // if (!valid.isValidDate(releasedAt)) {return res.status(400).json(" releasedAt date should be in format=> yyyy-mm-dd");}
     //---creating data---//
     let savedData = await bookModel.create(data);
     res.status(201).json( savedData );
   } catch (error) {
-    res.status(500).json({ status: false, err: error.message });
+    res.status(500).json(error.message);
   }
 };
 
@@ -72,16 +72,11 @@ const getBook = async function (req, res) {
       if (!mongoose.isValidObjectId(data.userId))
        { return res.status(400).json( "User id is not valid" );}
     }
-    const returnBook = await bookModel.find({ $and: [data, { isDeleted: false }] })
+    const returnBook = await bookModel.find()/*{ $and: [data, { isDeleted: false }] }*/
       .select("title excerpt userId category releasedAt reviews")
       .sort({ title: 1 });
     if (returnBook.length > 0) {
-      return res.status(200).json({
-          status: true,
-          count: returnBook.length,
-          message: "Book list",
-          data:returnBook,
-        });
+      return res.status(200).json(returnBook );
     } else {
       res.status(404).json("No Book Found" );
     }

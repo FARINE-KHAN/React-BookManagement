@@ -2,14 +2,14 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom' 
 // import img from "../../images/bk.jpg"
-import {Auth} from '../../Context/AuthContext';
+import {AuthContext} from '../../Context/AuthContext';
 
 export const Login = () => {
   const[inputs,setInputs]=useState({
     email:"",
     password:""
   })
-  const {login}=useContext(Auth)
+  const {login}=useContext(AuthContext)
 
   const [error, setError] = useState(null);
 
